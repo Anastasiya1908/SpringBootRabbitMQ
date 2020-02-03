@@ -1,4 +1,4 @@
-package com.example.springRabbitMQ;
+package com.example.springrabbitmq;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
