@@ -1,4 +1,4 @@
-package com.example.SpringRabbitMQ;
+package com.example.springRabbitMQ;
 
 
 import org.slf4j.Logger;
@@ -9,9 +9,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class RabbitMqListener {
-
-    @Autowired
-    private EmailService emailService;
 
     static final Logger LOGGER = LoggerFactory.getLogger(RabbitMqListener.class);
 
