@@ -11,7 +11,7 @@ public class RabbitMqListener {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RabbitMqListener.class);
 
-    @RabbitListener(queues = "query-1-1")
+    @RabbitListener(queues = "queue-1-1")
     public void receiveEmail(String email) {
         LOGGER.info("Email : " + email);
     }
