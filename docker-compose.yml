@@ -4,4 +4,3 @@ services:
     image: postgres:12.1
     ports:
       - "5432:5432"
-      - "5672:5672"
