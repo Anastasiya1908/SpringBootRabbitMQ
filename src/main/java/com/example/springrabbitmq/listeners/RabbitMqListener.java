@@ -25,10 +25,14 @@ public class RabbitMqListener {
     @Transactional
     public void receiveEmail(String email) {
         Optional<UserRequest> userRequestOptional = userService.getUserRequestByEmail(email);
-        userRequestOptional.ifPresent(userRequest -> userRequest.setRequestsCount(userRequest.getRequestsCount() + 1));
+        if (userRequestOptional.isPresent()) {
+            userRequestOptional.ifPresent(userRequest ->
+                    userRequest.setRequestsCount(userRequest.getRequestsCount() + 1));
+        } else {
+            userService.createUser(new UserRequest(email, 1));
 
+        }
         LOGGER.info("Email : " + email);
     }
-
 }
 

@@ -15,6 +15,10 @@ public class UserService {
         this.userRequestRepository = userRequestRepository;
     }
 
+    public void createUser(UserRequest userRequest) {
+        userRequestRepository.save(userRequest);
+    }
+
     public Optional<UserRequest> getUserRequestByEmail(String email) {
         return userRequestRepository.findByEmail(email);
     }
