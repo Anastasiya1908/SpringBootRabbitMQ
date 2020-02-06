@@ -18,18 +18,15 @@ public class RabbitMqListener {
     private static final Logger LOGGER = LoggerFactory.getLogger(RabbitMqListener.class);
 
     @Autowired
-    public UserService userService;
+    private UserService userService;
 
 
     @RabbitListener(queues = "queue-1-1")
     @Transactional
     public void receiveEmail(String email) {
-        Optional<UserRequest> userRequest = userService.getUserRequestByEmail(email);
-        if (userRequest.isPresent()) {
-            userService.updateExistingEmail(userRequest.get().getId());
-        } else {
-            userService.createUsers(new UserRequest(email, 1));
-        }
+        Optional<UserRequest> userRequestOptional = userService.getUserRequestByEmail(email);
+        userRequestOptional.ifPresent(userRequest -> userRequest.setRequestsCount(userRequest.getRequestsCount() + 1));
+
         LOGGER.info("Email : " + email);
     }
 

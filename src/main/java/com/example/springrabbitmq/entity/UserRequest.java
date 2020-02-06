@@ -1,7 +1,6 @@
 package com.example.springrabbitmq.entity;
 
 import javax.persistence.*;
-import java.util.Optional;
 
 @Entity
 @Table(name = "USER_REQUEST")
@@ -15,7 +14,7 @@ public class UserRequest {
     private String email;
 
     @Column
-    private Integer requests_count;
+    private Integer requestsCount;
 
     public Integer getId() {
         return id;
@@ -33,19 +32,19 @@ public class UserRequest {
         this.email = email;
     }
 
-    public Integer getRequests_count() {
-        return requests_count;
+    public Integer getRequestsCount() {
+        return requestsCount;
     }
 
-    public void setRequests_count(Integer requests_count) {
-        this.requests_count = requests_count;
+    public void setRequestsCount(Integer requestsCount) {
+        this.requestsCount = requestsCount;
     }
 
     public UserRequest() {
     }
 
-    public UserRequest(String email, Integer requests_count) {
+    public UserRequest(String email, Integer requestsCount) {
         this.email = email;
-        this.requests_count = requests_count;
+        this.requestsCount = requestsCount;
     }
 }
