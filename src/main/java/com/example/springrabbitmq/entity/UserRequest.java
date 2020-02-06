@@ -1,6 +1,7 @@
 package com.example.springrabbitmq.entity;
 
 import javax.persistence.*;
+import java.util.Optional;
 
 @Entity
 @Table(name = "USER_REQUEST")
@@ -8,44 +9,43 @@ public class UserRequest {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer ID;
-
-    @Column(name = "email")
-    private String EMAIL;
+    private Integer id;
 
     @Column
-    private Integer REQUESTS_COUNT;
+    private String email;
 
-    public Integer getID() {
-        return ID;
+    @Column
+    private Integer requests_count;
+
+    public Integer getId() {
+        return id;
     }
 
-    public void setID(Integer ID) {
-        this.ID = ID;
+    public void setId(Integer Id) {
+        this.id = Id;
     }
 
-    public String getEMAIL() {
-        return EMAIL;
+    public String getEmail() {
+        return email;
     }
 
-    public void setEMAIL(String EMAIL) {
-        this.EMAIL = EMAIL;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public Integer getREQUESTS_COUNT() {
-        return REQUESTS_COUNT;
+    public Integer getRequests_count() {
+        return requests_count;
     }
 
-    public void setREQUESTS_COUNT(Integer REQUESTS_COUNT) {
-        this.REQUESTS_COUNT = REQUESTS_COUNT;
+    public void setRequests_count(Integer requests_count) {
+        this.requests_count = requests_count;
     }
 
-   public UserRequest(){
-
+    public UserRequest() {
     }
 
-    public UserRequest(String EMAIL, Integer REQUESTS_COUNT){
-        this.EMAIL = EMAIL;
-        this.REQUESTS_COUNT = REQUESTS_COUNT;
+    public UserRequest(String email, Integer requests_count) {
+        this.email = email;
+        this.requests_count = requests_count;
     }
 }
