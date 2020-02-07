@@ -31,7 +31,7 @@ public class UserService {
     }
 
 
-    public void sendEmailIfMore(String email) {
+    public void sendEmailIfMultipyOfTen(String email) {
         rabbitTemplate.convertAndSend(exchangeName, "info", email);
     }
 

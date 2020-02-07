@@ -16,7 +16,7 @@ import java.util.Optional;
 @Component
 public class RabbitMqListener {
 
-    @Value("${nastya.property}")
+    @Value("${isSendEmail.property}")
     private Boolean flag;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RabbitMqListener.class);
@@ -33,7 +33,7 @@ public class RabbitMqListener {
             userRequestOptional.ifPresent(userRequest ->
                     userRequest.setRequestsCount(userRequest.getRequestsCount() + 1));
             if ((userRequestOptional.get().getRequestsCount() % 10 == 0) && flag) {
-                userService.sendEmailIfMore(email);
+                userService.sendEmailIfMultipyOfTen(email);
             }
         } else {
             userService.createUser(new UserRequest(email, 1));
