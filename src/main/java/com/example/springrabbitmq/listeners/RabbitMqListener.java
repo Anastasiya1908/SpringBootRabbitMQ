@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
@@ -14,6 +15,9 @@ import java.util.Optional;
 
 @Component
 public class RabbitMqListener {
+
+    @Value("${isSendEmail.property}")
+    private Boolean flag;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RabbitMqListener.class);
 
@@ -28,9 +32,11 @@ public class RabbitMqListener {
         if (userRequestOptional.isPresent()) {
             userRequestOptional.ifPresent(userRequest ->
                     userRequest.setRequestsCount(userRequest.getRequestsCount() + 1));
+            if ((userRequestOptional.get().getRequestsCount() % 10 == 0) && flag) {
+                userService.sendEmailIfMultipyOfTen(email);
+            }
         } else {
             userService.createUser(new UserRequest(email, 1));
-
         }
         LOGGER.info("Email : " + email);
     }
